@@ -17,6 +17,4 @@ app.use(rutas)
 app.use(activo)
 app.use(ubi)
 
-app.listen(process.env.PORT||5000)
-
-console.log("Servidor corriendo en el puerto: 5000")
+app.listen(5000)
