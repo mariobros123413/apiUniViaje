@@ -83,6 +83,7 @@ export const createuser = async (req, res) => {
         const {nombre,email,ci,UsuI,Npass} = req.body
         await consul.query('INSERT INTO persona (ci, nombre, email) VALUES ($1,$2,$3)', [ci, nombre, email])
         await consul.query('INSERT INTO administrador (cipersona,usuario,contrasena) VALUES ($1,$2,$3)',[ci,UsuI,Npass])
+        console.log("si paso")
         res.send('usuario creado')
     } catch (error) {
         res.send("ERROR")
