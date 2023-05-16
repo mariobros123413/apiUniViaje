@@ -48,8 +48,20 @@ export const getEmpleadobyID = async (req, res) => {
 export const createCliente = async (req, res) => {
     try {
         const { ci, nombre, direccion, ciudad, celular, email, descripcion,empresa } = req.body
-        consul.query('INSERT INTO persona (ci, nombre, direccion, ciudad, celular, email, descripcion) VALUES ($1,$2,$3,$4,$5,$6,$7)', [ci, nombre, direccion, ciudad, celular, email, descripcion])
-        consul.query('INSERT INTO cliente (cipersona,empresa) VALUES ($1,$2)',[ci,empresa])
+        await consul.query('INSERT INTO persona (ci, nombre, direccion, ciudad, celular, email, descripcion) VALUES ($1,$2,$3,$4,$5,$6,$7)', [ci, nombre, direccion, ciudad, celular, email, descripcion])
+        await consul.query('INSERT INTO cliente (cipersona,empresa) VALUES ($1,$2)',[ci,empresa])
+        res.send('usuario creado')
+    } catch (error) {
+        res.send("ERROR")
+    }
+}
+
+export const createE = async (req, res) => {
+    try {
+        const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body
+        await consul.query('INSERT INTO persona (ci, nombre, direccion, celular, email, descripcion) VALUES ($1,$2,$3,$4,$5,$6)', [ci, nombre, direccion, celular, email, descripcion])
+        await consul.query('INSERT INTO empleado (id,cipersona) VALUES ($1,$2)',[id,ci])
+        await consul.query('INSERT INTO localizaem (cipersona,idubicacion) VALUES ($1,$2)',[ci,departamento])
         res.send('usuario creado')
     } catch (error) {
         res.send("ERROR")
@@ -80,6 +92,19 @@ export const createEmpleado = async (req, res) => {
     }
 }
 
+export const Musuario = async (req, res) => {
+    try {
+        const { ci, nombre, direccion, ciudad, celular, email, descripcion,empresa } = req.body
+        consul.query('INSERT INTO persona (ci, nombre, direccion, ciudad, celular, email, descripcion) VALUES ($1,$2,$3,$4,$5,$6,$7)', [ci, nombre, direccion, ciudad, celular, email, descripcion])
+        
+        res.send('usuario creado')
+
+        consul.query('INSERT INTO empleado (cipersona) VALUES ($1)',[ci])
+    } catch (error) {
+        res.send("ERROR")
+    }
+}
+
 export const deleteUser = async (req,res) =>{
     try {
         const resp = await consul.query('DELETE FROM persona WHERE ci = $1',[req.params.ci])
@@ -91,8 +116,9 @@ export const deleteUser = async (req,res) =>{
 
 export const MUser = async (req,res) => {
     try {
-        const { ci, nombre, direccion, ciudad, celular, email, descripcion } = req.body
-        const resp = await consul.query('UPDATE persona SET ci = $1,nombre = $2,direccion = $3,ciudad = $4,celular = $5,email = $6,descripcion = $7 WHERE ci = $8 )',[ci, nombre, direccion, ciudad, celular, email, descripcion,req.params.ci])
+        const {nombre, usuario, direccion, ciudad, celular, email} = req.body
+        await consul.query('UPDATE persona SET nombre = $1,direccion = $2,ciudad = $3,celular = $4,email = $5 WHERE ci = $6 )',[nombre, direccion, ciudad, celular, email,req.params.ci])
+        await consul.query('UPDATE administrador SET usuario = $1 WHERE cipersona = $2 )',[usuario,req.params.ci])
     } catch (error) {
         res.send("ERROR")
     }
