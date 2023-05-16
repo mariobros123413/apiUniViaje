@@ -17,4 +17,4 @@ app.use(rutas)
 app.use(activo)
 app.use(ubi)
 
-app.listen(5000)
+app.listen(process.env.PORT||5000)
