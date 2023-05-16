@@ -68,6 +68,16 @@ export const createE = async (req, res) => {
     }
 }
 
+export const Asig = async (req, res) => {
+    try {
+        const { idActivo, cipersona, fecha } = req.body
+        await consul.query('INSERT INTO asignado (id,cipersona,fechasalida) VALUES ($1,$2,$3)',[idActivo, cipersona,fecha])
+        res.send('usuario creado')
+    } catch (error) {
+        res.send("ERROR")
+    }
+}
+
 export const createuser = async (req, res) => {
     try {
         const {nombre,email,ci,UsuI,Npass} = req.body
