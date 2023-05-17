@@ -10,6 +10,8 @@ const ubi = Router()
 
 ubi.get('/ubicaciones',getUbicaciones)
 ubi.post('/ubicaciones',createUbicacion)
+ubi.put('')
+ubi.delete('')
 
 
 

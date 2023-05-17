@@ -16,8 +16,6 @@ activo.get('/api/acti/:serial', getActivobySerial)
 
 activo.post('/api/acti', createActivo)
 
-//activo.put('/api/acti/:id', MUser)
-
 activo.delete('/api/acti/:id', deleteActivo)
 
 export default activo;
