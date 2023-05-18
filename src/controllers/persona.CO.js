@@ -100,12 +100,10 @@ export const createuser = async (req, res) => {
 
 export const createEmpleado = async (req, res) => {
     try {
-        const { ci, nombre, direccion, ciudad, celular, email, descripcion, empresa } = req.body
+        const { ci, nombre, direccion, ciudad, celular, email, descripcion} = req.body
         consul.query('INSERT INTO persona (ci, nombre, direccion, ciudad, celular, email, descripcion) VALUES ($1,$2,$3,$4,$5,$6,$7)', [ci, nombre, direccion, ciudad, celular, email, descripcion])
-
-        res.send('usuario creado')
-
         consul.query('INSERT INTO empleado (cipersona) VALUES ($1)', [ci])
+        res.send('usuario creado')
     } catch (error) {
         res.send("ERROR")
     }
@@ -145,9 +143,9 @@ export const MUser = async (req, res) => {
 
 export const Memp = async (req, res) => {
     try {
-        const { nombre, usuario, direccion, ciudad, celular, email } = req.body
+        const { ci, nombre, direccion, ciudad, celular, email, descripcion, empresa } = req.body
         await consul.query("UPDATE persona SET nombre = $1,direccion = $2,ciudad = $3,celular = $4,email = $5 WHERE ci = $6", [nombre, direccion, ciudad, celular, email, req.params.ci])
-        await consul.query('UPDATE administrador SET usuario = $1 WHERE cipersona = $2 )', [usuario, req.params.ci])
+        
     } catch (error) {
         res.send("ERROR")
     }

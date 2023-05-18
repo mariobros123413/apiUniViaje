@@ -11,7 +11,8 @@ import {
     getusuariobyID,
     Musuario,
     createE,
-    Asig
+    Asig,
+    Memp
 } from "../controllers/persona.CO.js"
 
 const rutas = Router();
@@ -35,6 +36,8 @@ rutas.post('/api/createuser', createuser)
 rutas.post('/api/userE', createEmpleado)
 
 rutas.put('/api/user/:ci', MUser)
+
+rutas.put('/api/emp/:ci', Memp)
 
 rutas.delete('/api/user/:ci', deleteUser)
 
