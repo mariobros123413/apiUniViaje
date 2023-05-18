@@ -20,6 +20,8 @@ rutas.get('/api/user', getClientes)
 
 rutas.get('/api/user/:ci', getClientebyID)
 
+rutas.get('/api/emp', getClientebyID)
+
 rutas.get('/api/usuar/:usuario', getusuariobyID)
 
 rutas.post('/api/user', createCliente)

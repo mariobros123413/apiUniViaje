@@ -27,6 +27,15 @@ export const getClientebyID = async (req, res) => {
     }
 }
 
+export const getempleados = async (req, res) => {
+    try {
+        const resp = await consul.query('SELECT * FROM persona,empleado where ci=ciPersona')
+        res.status(200).json(resp.rows)
+    } catch (error) {
+        res.send("ERROR")
+    }
+}
+
 export const getusuariobyID = async (req, res) => {
     try {
         const resp = await consul.query('SELECT * FROM persona,administrador where usuario = $1 and ci=ciPersona', [req.params.usuario])
