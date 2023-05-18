@@ -2,7 +2,7 @@ import { consul } from "../db.js"
 
 export const getClientes = async (req, res) => {
     try {
-        const resp = await consul.query('SELECT * FROM persona,cliente where ci=ciPersona')
+        const resp = await consul.query('SELECT * FROM persona')
         res.status(200).json(resp.rows)
     } catch (error) {
         res.send("ERROR")

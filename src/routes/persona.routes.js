@@ -12,7 +12,8 @@ import {
     Musuario,
     createE,
     Asig,
-    Memp
+    Memp,
+    getEmpleados
 } from "../controllers/persona.CO.js"
 
 const rutas = Router();
@@ -21,7 +22,7 @@ rutas.get('/api/user', getClientes)
 
 rutas.get('/api/user/:ci', getClientebyID)
 
-rutas.get('/api/emp', getClientebyID)
+rutas.get('/api/emp', getEmpleados)
 
 rutas.get('/api/usuar/:usuario', getusuariobyID)
 
