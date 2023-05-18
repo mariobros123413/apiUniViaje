@@ -16,7 +16,7 @@ activo.get('/api/acti/:serial', getActivobySerial)
 
 activo.post('/api/acti', createActivo)
 
-activo.post('/api/acti/:id', updateActivo)
+activo.put('/api/acti/:id', updateActivo)
 
 activo.delete('/api/acti/:id', deleteActivo)
 
