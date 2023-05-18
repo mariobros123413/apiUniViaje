@@ -11,12 +11,15 @@ export const getActivos = async (req, res) => {
 
 export const getUbiActivo = async (req, res) => {
     try {
-        const resp = await consul.query('SELECT * FROM activoFijo,ubicacion,localiza WHERE activoFijo.id = $1 and idActivo=activoFijo.id and idUbicacion=ubicacion.id',[req.params.id])
+        const resp = await consul.query('SELECT * FROM activoFijo,ubicacion,localiza WHERE idActivo=activoFijo.id and idUbicacion=ubicacion.id')
+        console.log(resp.rows)
         res.status(200).json(resp.rows)
     } catch (error) {
         res.send("ERROR")
     }
 }
+
+
 
 export const getGarActivo = async (req, res) => {
     try {

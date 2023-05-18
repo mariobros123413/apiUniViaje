@@ -10,7 +10,7 @@ activo.get('/api/acti/:id', getActivobyID)
 
 activo.get('/api/Gacti',getGarActivo)
 
-activo.get('/api/Gacti',getUbiActivo)
+activo.get('/api/Gactivo',getUbiActivo)
 
 activo.get('/api/acti/:serial', getActivobySerial)
 
