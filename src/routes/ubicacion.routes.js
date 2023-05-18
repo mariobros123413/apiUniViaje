@@ -1,21 +1,20 @@
-// primero se importa router
-import {Router} from "express"
-import { createUbicacion, getUbicaciones } from "../controllers/Ubicaion.CO.js"
+import { Router } from "express";
 
-// se lo pone en una constante para poder usarlo
+import {getUbicaciones, createUbicacion,deleteUbicacion,getUbicacionByID,updateUbicacion }from "../controllers/Ubicaion.CO.js"
 
-const ubi = Router()
+const ubi = Router();
 
-// ya puedes comenzar a crear rutas
+ubi.get('/api/ubi', getUbicaciones)
 
-ubi.get('/ubicaciones',getUbicaciones)
-ubi.post('/ubicaciones',createUbicacion)
-ubi.put('')
-ubi.delete('')
+ubi.get('/api/ubi/:id', getUbicacionByID)
 
+ubi.post('/api/ubi', createUbicacion)
 
+ubi.post('/api/ubi/:id', updateUbicacion)
+//activo.put('/api/acti/:id', MUser)
 
-// ahora hay que exportarlo 
+ubi.put('/api/ubi/:id', updateUbicacion) //asdas
 
+ubi.delete('/api/ubi/:id', deleteUbicacion)
 
-export default ubi
+export default ubi;

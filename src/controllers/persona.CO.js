@@ -144,7 +144,7 @@ export const MUser = async (req, res) => {
 export const Memp = async (req, res) => {
     try {
         const { ci, nombre, direccion, ciudad, celular, email, descripcion, empresa } = req.body
-        await consul.query("UPDATE persona SET nombre = $1,direccion = $2,ciudad = $3,celular = $4,email = $5 WHERE ci = $6", [nombre, direccion, ciudad, celular, email, req.params.ci])
+        await consul.query("UPDATE persona SET ci = $1, nombre = $2, direccion = $3, ciudad = $4, celular = $5, email = $6, descripcion = $7 WHERE ci = $8", [ci, nombre, direccion, ciudad, celular, email, descripcion, req.params.ci])
         
     } catch (error) {
         res.send("ERROR")
