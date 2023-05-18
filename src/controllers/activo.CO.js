@@ -56,6 +56,16 @@ export const createActivo = async (req, res) => {
     }
 }
 
+export const updateActivo = async (req, res) => {
+    try {
+      const { descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto } = req.body;
+      await consul.query('UPDATE activo SET descripcion=$1, diaCompra=$2, costo=$3, lugarCompra=$4, marca=$5, modelo=$6, serial=$7, foto=$8 WHERE id = $9', [descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto, req.params.id]);
+      res.send(`activo ${req.params.id} actualizado`);
+    } catch (error) {
+      res.send("ERROR");
+    }
+  };
+
 
 export const deleteActivo = async (req,res) =>{
     try {
