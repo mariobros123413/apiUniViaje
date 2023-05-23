@@ -81,7 +81,7 @@ export const Asig = async (req, res) => {
     try {
         const { idActivo, cipersona, fecha } = req.body
         console.log(req.body)
-        await consul.query('INSERT INTO asignado (id,cipersona,fechasalida) VALUES ($1,$2,$3)', [idActivo, cipersona, fecha])
+        await consul.query('INSERT INTO asignado (idactivofijo,cipersona,fechasalida) VALUES ($1,$2,$3)', [idActivo, cipersona, fecha])
         res.send('activo asignado')
     } catch (error) {
         res.send("ERROR")
