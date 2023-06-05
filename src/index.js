@@ -14,4 +14,4 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(auth)
 app.use(usuario)
-app.listen(process.env.PORT||3000)
+app.listen(process.env.PORT||3000)//asd
