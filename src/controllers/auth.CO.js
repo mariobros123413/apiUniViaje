@@ -42,7 +42,7 @@ export const register = async (req, res) => {
       const query = 'SELECT * FROM usuario WHERE nroregistro = $1';
       const result = await consul.query(query, [nroregistro]);
   
-      if (result.rows.length > 0) {
+      if (result.rows.length > 0) {//as
         return res.status(409).json({ message: 'El usuario ya está registrado' });
       }
   
