@@ -3,7 +3,7 @@ import { getVehiculo , updateVehiculo, createVehiculo, deleteVehiculo} from "../
 
 const vehiculo = Router();
 
-vehiculo.get('/api/vehiculo/:id', getVehiculo);
+vehiculo.get('/api/vehiculo/:idusuario', getVehiculo);
 vehiculo.put('/api/vehiculo/:idusuario', updateVehiculo);
 vehiculo.post('/api/vehiculocreate/:idusuario', createVehiculo);
 vehiculo.delete('/api/vehiculo/:idusuario', deleteVehiculo);
