@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { getVehiculo , updateVehiculo} from "../controllers/vehiculo.CO.js";
+import { getVehiculo , updateVehiculo, createVehiculo, deleteVehiculo} from "../controllers/vehiculo.CO.js";
 
 const vehiculo = Router();
 
 vehiculo.get('/api/vehiculo/:id', getVehiculo);
 vehiculo.put('/api/vehiculo/:idusuario', updateVehiculo);
+vehiculo.post('/api/vehiculocreate/:idusuario', createVehiculo);
+vehiculo.delete('/api/vehiculo/:idusuario', deleteVehiculo);
+
 // usuario.get('/api/usuario',getUsuarios);
 export default vehiculo;
