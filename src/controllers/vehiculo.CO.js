@@ -23,6 +23,8 @@ export const createVehiculo = async (req, res) => {
   try {
       const { idusuario,nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales} = req.body
       consul.query('INSERT INTO vehiculo (idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales) VALUES ($1,$2,$3,$4,$5,$6,$7)', [idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales])
+      console.log(idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales); // Verificar los valores de los parámetros
+
       res.send('Vehiculo registrado')
   } catch (error) {
       res.send("ERROR CREATE VEHICULO")
