@@ -21,7 +21,9 @@ export const updateVehiculo = async (req, res) => {
 
 export const createVehiculo = async (req, res) => {
   try {
-      const { idusuario,nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales} = req.body
+      const { nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales} = req.body
+      const idusuario = req.params.idusuario; // Agregar esta línea para obtener el valor de idusuario de los parámetros de la URL
+
       consul.query('INSERT INTO vehiculo (idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales) VALUES ($1,$2,$3,$4,$5,$6,$7)', [idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales])
       console.log(idusuario, nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales); // Verificar los valores de los parámetros
 
