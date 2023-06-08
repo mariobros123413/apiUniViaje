@@ -4,8 +4,9 @@ export const getVehiculo = async (req, res) => {
   try {
     const resp = await consul.query('SELECT vehiculo.* FROM vehiculo where vehiculo.idusuario=$1', [req.params.idusuario])
     res.status(200).json(resp.rows)
+    console.log(resp.rows);
   } catch (error) {
-    res.send("ERROR GET VEHICUL")
+    res.send("ERROR GET VEHICULO")
   }
 }
 
@@ -14,6 +15,8 @@ export const updateVehiculo = async (req, res) => {
     const { nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales } = req.body;
     await consul.query('UPDATE vehiculo SET nroplaca=$1, modelo=$2, anio=$3, capacidad=$4, fotovehiculo=$5, caracteristicasespeciales=$6 WHERE idusuario = $7', [nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales, req.params.idusuario]);
     res.send(`vehiculo ${req.params.idusuario} actualizado`);
+    console.log(req.body);
+
   } catch (error) {
     res.send("ERROR UPDATE VEHICULO");
   }
