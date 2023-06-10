@@ -11,9 +11,9 @@ export const getBrevet = async (req, res) => {
 
 export const updateBrevet = async (req, res) => {
     try {
-      const { ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento } = req.body;
-      await consul.query('UPDATE brevet SET ci=$1, nombre=$2, foto=$3, fecnacimiento=$4, dirdomicilio=$5, catlicencia=$6 ,fecexpedicion=$7, fecvencimiento=$8 WHERE id = $9', 
-      [ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento, req.params.id]);
+      const { ci, nombre, catlicencia ,fecexpedicion, fecvencimiento } = req.body;
+      await consul.query('UPDATE brevet SET ci=$1, nombre=$2, catlicencia=$3, fecexpedicion=$4, fecvencimiento=$5 WHERE id = $6', 
+      [ci, nombre, catlicencia ,fecexpedicion, fecvencimiento, req.params.id]);
       res.send(`brevet ${req.params.id} actualizado`);
     //   console.log(req.body);
   
