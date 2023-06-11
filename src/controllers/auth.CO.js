@@ -8,7 +8,7 @@ export const login = async (req, res) => {
 
     // Verificar si el usuario existe en la base de datos
     const query = 'SELECT * FROM usuario WHERE nroregistro = $1';
-    const result = await consul.query(query, [nroregistro]);
+    const result = await consul.query(query, [parseInt(nroregistro)]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -17,8 +17,8 @@ export const login = async (req, res) => {
     const user = result.rows[0];
 
     // Verificar la contraseña
-     const match = await bcrypt.compare(password, user.password);
-     //const penc = await bcrypt.hash(password, 10);
+    const match = await bcrypt.compare(password, user.password);
+    //const penc = await bcrypt.hash(password, 10);
     // console.log(penc);
     if (!match) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
@@ -33,6 +33,7 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 };
+
 
 export const register = async (req, res) => {
     try {
