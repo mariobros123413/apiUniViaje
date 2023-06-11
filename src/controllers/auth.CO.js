@@ -37,7 +37,7 @@ export const login = async (req, res) => {
 
 export const register = async (req, res) => {
     try {
-      const { nroregistro, password, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje, vehiculo, brevet, fotobrevet } = req.body;
+      const { nroregistro, password, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje } = req.body;
   
       // Verificar si el usuario ya existe en la base de datos
       const query = 'SELECT * FROM usuario WHERE nroregistro = $1';
@@ -51,8 +51,8 @@ export const register = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
   
       // Insertar el nuevo usuario en la base de datos
-      const insertQuery = 'INSERT INTO usuario (nroregistro, password, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje, vehiculo, brevet, fotobrevet) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)';
-      await consul.query(insertQuery, [nroregistro, hashedPassword, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje, vehiculo, brevet, fotobrevet]);
+      const insertQuery = 'INSERT INTO usuario (nroregistro, password, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+      await consul.query(insertQuery, [nroregistro, hashedPassword, correo, nombre, celular, fotoperfil, carrera, horarioclases, preferenciasviaje]);
   
       res.status(200).json({ message: 'Registro exitoso' });
     } catch (error) {
