@@ -8,7 +8,8 @@ export const login = async (req, res) => {
 
     // Verificar si el usuario existe en la base de datos
     const query = 'SELECT * FROM usuario WHERE nroregistro = $1';
-    const result = await consul.query(query, [parseInt(nroregistro)]);
+    const result = await consul.query(query, [nroregistro]);
+
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -42,7 +43,7 @@ export const register = async (req, res) => {
   
       // Verificar si el usuario ya existe en la base de datos
       const query = 'SELECT * FROM usuario WHERE nroregistro = $1';
-      const result = await consul.query(query, [parseInt(nroregistro)]);
+      const result = await consul.query(query, [nroregistro]);
   
       if (result.rows.length > 0) {//as
         return res.status(409).json({ message: 'El usuario ya está registrado' });
