@@ -24,15 +24,15 @@ export const updateBrevet = async (req, res) => {
   
   export const createBrevet = async (req, res) => {
     try {
-        const { id,ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento} = req.body
+        const { ci, nombre, foto,   catlicencia ,fecexpedicion, fecvencimiento} = req.body
         const ids = req.params.id; // Agregar esta línea para obtener el valor de idusuario de los parámetros de la URL
   
-        consul.query('INSERT INTO brevet (id, ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)', [id, ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento])
-        console.log(ids, ci, nombre, foto, fecnacimiento, dirdomicilio, catlicencia ,fecexpedicion, fecvencimiento); // Verificar los valores de los parámetros
+        consul.query('INSERT INTO brevet (id, ci, nombre, foto,   catlicencia ,fecexpedicion, fecvencimiento) VALUES ($1,$2,$3,$4,$5,$6,$7)', [ids, ci, nombre, foto,   catlicencia ,fecexpedicion, fecvencimiento])
+        // console.log(id, ci, nombre, foto,  catlicencia ,fecexpedicion, fecvencimiento); // Verificar los valores de los parámetros
   
         res.send('brevet registrado')
     } catch (e) {
-      console.log('Excepción durante la solicitud: $e');
+      console.log(`Excepción durante la solicitud: ${e}`);
     }
   }
   
