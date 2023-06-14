@@ -13,9 +13,17 @@ export const getVehiculo = async (req, res) => {
 export const updateVehiculo = async (req, res) => {
   try {
     const { nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales } = req.body;
+    console.log('Valores recibidos:');
+    console.log('nroplaca:', nroplaca);
+    console.log('modelo:', modelo);
+    console.log('anio:', anio);
+    console.log('capacidad:', capacidad);
+    console.log('fotovehiculo:', fotovehiculo);
+    console.log('caracteristicasespeciales:', caracteristicasespeciales);
+    console.log('idusuario:', req.params.idusuario);
+
     await consul.query('UPDATE vehiculo SET nroplaca=$1, modelo=$2, anio=$3, capacidad=$4, fotovehiculo=$5, caracteristicasespeciales=$6 WHERE idusuario = $7', [nroplaca, modelo, anio, capacidad, fotovehiculo, caracteristicasespeciales, req.params.idusuario]);
     res.send(`vehiculo ${req.params.idusuario} actualizado`);
-    console.log(req.body);
 
   } catch (error) {
     res.send("ERROR UPDATE VEHICULO");

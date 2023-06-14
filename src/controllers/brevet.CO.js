@@ -32,8 +32,7 @@ export const updateBrevet = async (req, res) => {
   
         res.send('brevet registrado')
     } catch (e) {
-      console.log('Excepción durante la solicitud: ');
-      console.log(e);
+      console.log('Excepción durante la solicitud: $e');
     }
   }
   
