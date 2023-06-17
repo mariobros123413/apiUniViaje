@@ -11,7 +11,7 @@ export const getRuta = async (req, res) => {
 
 export const getRutas = async (req, res) => {
     try {
-      const resp = await consul.query('SELECT ruta.* , usuario.nombre, usuario.preferenciasviaje, usuario.puntuacion FROM ruta, usuario, vehiculo,calificacion where ruta.idusuarioconductor=usuario.id and usuario.id=vehiculo.idusuario and estado= true and horariosalida < current_time and usuario.id=calificacion.id')
+      const resp = await consul.query('SELECT ruta.* , usuario.nombre, usuario.preferenciasviaje, usuario.puntuacion,vehiculo.fotovehiculo FROM ruta, usuario, vehiculo,calificacion where ruta.idusuarioconductor=usuario.id and usuario.id=vehiculo.idusuario and estado= true and horariosalida < current_time and usuario.id=calificacion.id')
       res.status(200).json(resp.rows)
     } catch (error) {
       res.send("AERROR GET RUTAS")
