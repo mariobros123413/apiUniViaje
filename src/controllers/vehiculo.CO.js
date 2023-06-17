@@ -4,7 +4,6 @@ export const getVehiculo = async (req, res) => {
   try {
     const resp = await consul.query('SELECT vehiculo.* FROM vehiculo where vehiculo.idusuario=$1', [req.params.idusuario])
     res.status(200).json(resp.rows)
-    console.log(resp.rows);
   } catch (error) {
     res.send("ERROR GET VEHICULO")
   }

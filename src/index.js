@@ -6,6 +6,7 @@ import auth from './routes/auth.routes.js'
 import usuario from './routes/usuario.routes.js'
 import vehiculo from './routes/vehiculo.routes.js'
 import brevet from './routes/brevet.routes.js'
+import ruta from './routes/ruta.routes.js'
 const app = express()
 
 app.use(morgan('dev'));
@@ -18,4 +19,5 @@ app.use(auth)
 app.use(usuario)
 app.use(vehiculo)
 app.use(brevet)
+app.use(ruta)
 app.listen(process.env.PORT||3000)//asd
