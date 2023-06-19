@@ -2,7 +2,7 @@ import { consul } from '../db.js';
 
 export const getRuta = async (req, res) => {
     try {
-      const resp = await consul.query('SELECT distinct ruta.* , usuario.nombre, usuario.preferenciasviaje, usuario.puntuacion,vehiculo.fotovehiculo FROM ruta, usuario, vehiculo where ruta.idusuarioconductor=usuario.id and usuario.id=vehiculo.idusuario and estado= true', [req.params.id])
+      const resp = await consul.query('SELECT distinct ruta.* , usuario.nombre, usuario.preferenciasviaje, usuario.puntuacion,vehiculo.fotovehiculo FROM ruta, usuario, vehiculo where usuario.id=ruta.idusuarioconductor and usuario.id=vehiculo.idusuario and estado= true and usuario.id=$1', [req.params.id])
       res.status(200).json(resp.rows)
     } catch (error) {
       res.send("AERROR GET RUTA")
