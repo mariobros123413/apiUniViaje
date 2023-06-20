@@ -8,7 +8,7 @@ export const getRuta = async (req, res) => {
       res.send("AERROR GET RUTA")
     }
 }
-
+//asd
 export const getRutas = async (req, res) => {
     try {
       const resp = await consul.query('SELECT distinct ruta.* , usuario.nombre, usuario.preferenciasviaje, usuario.puntuacion, vehiculo.fotovehiculo FROM ruta, usuario, vehiculo where ruta.idusuarioconductor=usuario.id and usuario.id=vehiculo.idusuario and estado= true and horariosalida > current_timestamp')
