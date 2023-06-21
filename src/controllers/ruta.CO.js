@@ -20,10 +20,10 @@ export const getRutas = async (req, res) => {
 
 export const createRuta = async (req, res) => {
   try {
-      const { horariosalida, horarioregreso, paradaintermedia, asientos, trayecto, destino, estado} = req.body
+      const { horariosalida, horarioregreso, paradaintermedia, asientos, destino, inicio, final, estado} = req.body
       const ids = req.params.idusuarioconductor; // Agregar esta línea para obtener el valor de idusuario de los parámetros de la URL
 
-      consul.query('INSERT INTO ruta ( idusuarioconductor, horariosalida, horarioregreso, paradaintermedia, asientos, trayecto, destino, estado) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [ ids, horariosalida, horarioregreso, paradaintermedia, asientos, trayecto, destino, estado])
+      consul.query('INSERT INTO ruta ( idusuarioconductor, horariosalida, horarioregreso, paradaintermedia, asientos, destino, inicio, final, estado) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)', [ ids,horariosalida, horarioregreso, paradaintermedia, asientos, destino, inicio, final, estado])
       // console.log(id, ci, nombre, foto,  catlicencia ,fecexpedicion, fecvencimiento); // Verificar los valores de los parámetros
 
       res.send('ruta creada')
