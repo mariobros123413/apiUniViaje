@@ -22,7 +22,14 @@ export const getSolicitud = async (req, res) => {
       res.send("AERROR GET SOLICITUD")
     }
 }
-
+export const getSolicitudes = async (req, res) => {
+    try {
+      const resp = await consul.query('select ruta.idusuarioconductor, solicitud.*, usuario. id as usuarioid, usuario.nombre, usuario.fotoperfil, usuario.celular, usuario.preferenciasviaje, usuario.puntuacion from ruta, solicitud, usuario where ruta.idusuarioconductor=$1 and ruta.id= solicitud.idruta and solicitud.idusuariopasajero = usuario.id group by ruta.idusuarioconductor,  solicitud.id, usuario. id, usuario.nombre, usuario.fotoperfil, usuario.celular, usuario.preferenciasviaje, usuario.puntuacion', [req.params.idusuarioconductor]);
+      res.status(200).json(resp.rows)
+    } catch (error) {
+      res.send("AERROR GET SOLICITUDES")
+    }
+}
 export const updateSolicitud = async (req, res) => {
     try {
       const { aceptacion } = req.body;
