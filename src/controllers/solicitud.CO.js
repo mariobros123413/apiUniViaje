@@ -12,4 +12,26 @@ export const createSolicitud = async (req, res) => {
     } catch (e) {
       console.log(`Excepción durante la solicitud: ${e} AcreateSolicitud`);
     }
-  }
+}
+
+export const getSolicitud = async (req, res) => {
+    try {
+      const resp = await consul.query('select solicitud.* , usuario. id, usuario.nombre, usuario.fotoperfil, usuario.celular, usuario.preferenciasviaje, usuario.puntuacion from solicitud, usuario where solicitud.idruta=$1 and solicitud.idusuariopasajero = usuario.id', [req.params.idruta]);
+      res.status(200).json(resp.rows)
+    } catch (error) {
+      res.send("AERROR GET SOLICITUD")
+    }
+}
+
+export const updateSolicitud = async (req, res) => {
+    try {
+      const { aceptacion } = req.body;
+      await consul.query('UPDATE solicitud SET aceptacion = $1 WHERE idusuariopasajero = $2 and idruta=$3', 
+      [aceptacion, req.params.idusuariopasajero, req.params.idruta]);
+      res.send(`solicitud ${req.params.idusuariopasajero} actualizado`);
+    //   console.log(req.body);
+  
+    } catch (error) {
+      res.send("ERROR UPDATE solicitud");
+    }
+  };
