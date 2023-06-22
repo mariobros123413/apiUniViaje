@@ -17,7 +17,7 @@ export const getRutas = async (req, res) => {
       res.send("AERROR GET RUTAS")
     }
 }
-
+//
 export const createRuta = async (req, res) => {
   try {
       const { horariosalida, horarioregreso, paradaintermedia, asientos, destino, inicio, final, estado} = req.body
