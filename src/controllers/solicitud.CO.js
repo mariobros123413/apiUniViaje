@@ -41,4 +41,13 @@ export const updateSolicitud = async (req, res) => {
     } catch (error) {
       res.send("ERROR UPDATE solicitud");
     }
-  };
+};
+
+export const getReporte = async (req, res) => {
+  try {
+    const resp = await consul.query('select ruta.*, solicitud.*, usuario.id as idusuario from usuario, solicitud, ruta where usuario.id = $1 and ruta.id = solicitud.idruta and solicitud.idusuariopasajero = usuario.id', [req.params.idusuario]);
+    res.status(200).json(resp.rows)
+  } catch (error) {
+    res.send("AERROR GET SOLICITUD")
+  }
+}
